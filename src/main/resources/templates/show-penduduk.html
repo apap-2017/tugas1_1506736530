@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title th:text="'Data Penduduk - ' + ${penduduk.nik}">title</title>
+		<div th:replace="fragments/fragment :: links"></div>
+	</head>
+	<body>
+		<div th:replace="fragments/fragment :: header"></div>
+		<div class="container-fluid text-center">    
+		  <div class="row content">
+		    <div class="col-sm-2">
+		    </div>
+		    <div class="col-sm-8 text-left"> 
+		    
+		<div th:if="${flag == true}">
+            <h1>Sukses !</h1>
+            <p th:text="'Penduduk dengan NIK ' + ${nik} + ' sudah tidak aktif'">sukses</p>
+        </div>
+        	
+				<br></br>
+				<h1 th:text="'Lihat Data Penduduk - ' + ${penduduk.nik}">title</h1>
+				<table style="width:100%">
+						<tr>
+							<td><strong>NIK</strong></td>
+							<td><p th:text="${penduduk.nik}">NIK Penduduk</p></td>
+						</tr>
+						<tr>
+							<td><strong>Nama</strong></td>
+							<td><p th:text="${penduduk.nama}">Nama Penduduk</p></td>
+						</tr>
+						<tr>
+							<td><strong>Tempat/Tanggal Lahir</strong></td>
+							<td><p th:text="${penduduk.tempat_lahir}">Tempat Lahir Penduduk</p></td>
+						</tr>
+						<tr>
+							<td><strong>Alamat</strong></td>
+							<td><p th:text="${alamat.alamat}">Alamat Penduduk</p></td>
+						</tr>
+						<tr>
+							<td><strong>RT/RW</strong></td>
+							<td><p th:text="${alamat.rt} + '/' + ${alamat.rw}">RT/RW Penduduk</p></td>
+						</tr>
+						<tr>
+							<td><strong>Kelurahan/Desa</strong></td>
+							<td><p th:text="${alamat.kelurahan}">Kelurahan Penduduk</p></td>
+						</tr>
+						<tr>
+							<td><strong>Kecamatan</strong></td>
+							<td><p th:text="${alamat.kecamatan}">Kecamatan Penduduk</p></td>
+						</tr>
+						<tr>
+							<td><strong>Kota</strong></td>
+							<td><p th:text="${alamat.kota}">Kota Penduduk</p></td>
+						</tr>
+						<tr>
+							<td><strong>Golongan Darah</strong></td>
+							<td><p th:text="${penduduk.golongan_darah}">Golongan Darah Penduduk</p></td>
+						</tr>
+						<tr>
+							<td><strong>Agama</strong></td>
+							<td><p th:text="${penduduk.agama}">Agama Penduduk</p></td>
+						</tr>
+						<tr>
+							<td><strong>Status Perkawinan</strong></td>
+							<td><p th:text="${penduduk.status_perkawinan}">Status Perkawinan Penduduk</p></td>
+						</tr>
+						<tr>
+							<td><strong>Pekerjaan</strong></td>
+							<td><p th:text="${penduduk.pekerjaan}">Pekerjaan Penduduk</p></td>
+						</tr>
+						<tr>
+							<td><strong>Kewarganegaraan</strong></td>
+							<td><p th:text="${kewarganegaraan}">Kewarganegaraan Penduduk</p></td>
+						</tr>
+						<tr>
+							<td><strong>Status Kematian</strong></td>
+							<td><p th:text="${wafat}">Status Kematian Penduduk</p></td>
+						</tr>
+				</table>
+				<div class="container container-fluid">
+					<a class="btn btn-primary" th:href="'/penduduk/ubah/' + ${penduduk.nik}" > Ubah Data</a>
+					<form th:action="'/penduduk?nik='+ ${penduduk.nik}" method="post">
+							<input type="hidden" name="alamat" th:value="${alamat}"></input>
+							<input class="btn btn-danger" type="submit" value="Nonaktifkan NIK"></input>
+					</form>
+				</div>
+		    </div>
+		    <div class="col-sm-2">
+		    </div>
+		  </div>
+		</div>
+	</body>
+</html>

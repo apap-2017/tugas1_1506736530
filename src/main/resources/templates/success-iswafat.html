@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Sukses Tambah Keluarga</title>
+		<div th:replace="fragments/fragment :: links"></div>
+	</head>
+	<body>
+		<div th:replace="fragments/fragment :: header"></div>
+		<h2>Sukses !</h2>
+		<p th:text="'Penduduk dengan NIK ' + ${nik} + ' sudah tidak aktif'">Success Letter</p>
+		<div th:replace="fragments/fragment :: footer"></div>
+	</body>
+</html>	

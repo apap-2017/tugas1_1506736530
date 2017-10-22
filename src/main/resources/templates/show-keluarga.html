@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title th:text="'Data Keluarga - ' + ${keluarga.nomor_kk}">title</title>
+		<div th:replace="fragments/fragment :: links"></div>
+	</head>
+	<body>
+		<div th:replace="fragments/fragment :: header"></div>
+		<div class="container-fluid text-center">    
+		  <div class="row content">
+		    <div class="col-sm-2">
+		    </div>
+		    <div class="col-sm-8 text-left"> 
+				
+				<h1 th:text="'Lihat Data Keluarga - ' + ${keluarga.nomor_kk}">title</h1>
+				<table style="width:50%">
+						<tr>
+							<td><strong>NKK</strong></td>
+							<td><p th:text="${keluarga.nomor_kk}">NKK Keluarga</p></td>
+						</tr>
+						<tr>
+							<td><strong>Alamat</strong></td>
+							<td><p th:text="${alamat.alamat}">Alamat Keluarga</p></td>
+						</tr>
+						<tr>
+							<td><strong>RT/RW</strong></td>
+							<td><p th:text="${alamat.rt} + '/' + ${alamat.rw}">RT/RW Keluarga</p></td>
+						</tr>
+						<tr>
+							<td><strong>Kelurahan/Desa</strong></td>
+							<td><p th:text="${alamat.kelurahan}">Kelurahan Keluarga</p></td>
+						</tr>
+						<tr>
+							<td><strong>Kecamatan</strong></td>
+							<td><p th:text="${alamat.kecamatan}">Kecamatan Keluarga</p></td>
+						</tr>
+						<tr>
+							<td><strong>Kota</strong></td>
+							<td><p th:text="${alamat.kota}">Kota Keluarga</p></td>
+						</tr>
+				</table>
+				<table id="table_id" class="table-bordered table-hover table-responsive" style="width:100%">
+						<tr>
+							<th>No</th>
+							<th>Nama Lengkap</th>
+							<th>NIK</th>
+							<th>Jenis Kelamin</th>
+							<th>Tempat Lahir</th>
+							<th>Tanggal Lahir</th>
+							<th>Agama</th>
+							<th>Pekerjaan</th>
+							<th>Status Perkawinan</th>
+							<th>Status Dalam Keluarga</th>
+							<th>Kewarganegaraan</th>
+						</tr>
+						<div th:each="anggota,iterationStatus: ${keluarga.anggotaKeluarga}">
+		            		<tr>
+		            			<td th:text="${iterationStatus.count}">No</td>
+		            			<td th:text="${anggota.nama}">Nama Lengkap</td>
+		            			<td th:text="${anggota.nik}">NIK</td>
+		            			
+		            			<div th:switch="${anggota.jenis_kelamin}"> 
+								  <td th:case="0">Pria</td>
+								  <td th:case="1">Wanita</td>
+								</div>
+								
+		            			<td th:text="${anggota.tempat_lahir}">Tempat Lahir</td>
+		            			<td th:text="${anggota.tanggal_lahir}">Tanggal Lahir</td>
+		            			<td th:text="${anggota.agama}">Agama</td>
+		            			<td th:text="${anggota.pekerjaan}">Pekerjaan</td>
+		            			<td th:text="${anggota.status_perkawinan}">Status Perkawinan</td>
+		            			<td th:text="${anggota.status_dalam_keluarga}">Status Dalam Keluarga</td>
+		            			
+		            			<div th:switch="${anggota.is_wni}"> 
+								  <td th:case="0">WNA</td>
+								  <td th:case="1">WNI</td>
+								</div>
+		            		</tr>           		
+		       			</div>
+				</table>
+				<form th:action="'/keluarga/ubah/' + ${keluarga.nomor_kk}" method="get">
+					<input class="btn btn-primary" type="submit" value="Ubah Data"></input>
+				</form>
+		    </div>
+		    <div class="col-sm-2">
+		    </div>
+		  </div>
+		</div>
+	</body>
+</html>
