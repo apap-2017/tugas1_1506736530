@@ -39,7 +39,9 @@
 		</div>
 		<script>
 			$(document).ready( function () {
-   				 $('#data').DataTable();
+   				 $('#data').DataTable({
+   				 	"pagingType": "full_numbers"
+   				 });
 			} );
 		</script>
 	</body>
